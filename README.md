@@ -41,7 +41,7 @@ const query = sql`SELECT id FROM users WHERE name=${'toto'} ${
 }`;
 const query2 = sql`SELECT id FROM ${escapeSQLIdentifier('table')}`;
 const query3 = sql`SELECT id FROM users WHERE id IN ${joinSQLValues([1, 2])}}`;
-const mergedQuery = `
+const mergedQuery = sql`
 ${query}
 UNION
 ${query2}
@@ -50,11 +50,10 @@ ${query3}
 `;
 ```
 
-To check queries in your Jest tests: To use it with Jest, simply add this to
-your tests files:
+To check queries in your Jest tests, simply add this to your tests files:
 
 ```js
-jest.mock('pgsqwell', require('pgsqwell/dist/mock'));
+jest.mock('pgsqwell', () => require('pgsqwell/dist/mock'));
 ```
 
 Known downsides:
