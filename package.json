@@ -54,7 +54,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/nfroidure/pqsqwell.git"
+    "url": "git+ssh://git@github.com/nfroidure/pgsqwell.git"
   },
   "keywords": [
     "pg",
@@ -68,9 +68,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nfroidure/pqsqwell/issues"
+    "url": "https://github.com/nfroidure/pgsqwell/issues"
   },
-  "homepage": "https://github.com/nfroidure/pqsqwell#readme",
+  "homepage": "https://github.com/nfroidure/pgsqwell#readme",
   "devDependencies": {
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.11.1",
