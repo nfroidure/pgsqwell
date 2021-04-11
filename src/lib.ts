@@ -24,7 +24,14 @@ export type SQLValues = {
   values: SQLValue[];
 };
 
-export type SQLValue = string | number | boolean | object | null | undefined;
+export type SQLValue =
+  | string
+  | number
+  | boolean
+  | Record<string, unknown>
+  | null
+  | Date
+  | undefined;
 
 export type SQLStringLiteralParameter =
   | SQLStatement

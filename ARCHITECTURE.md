@@ -18,7 +18,7 @@ This tagged template function adds a level of abstraction
  into `{ text: 'SELECT * FROM users WHERE id=$1', values: [1] }`
  under the hood.
 
-[See in context](./src/lib.ts#L168-L178)
+[See in context](./src/lib.ts#L175-L185)
 
 
 

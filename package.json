@@ -72,38 +72,38 @@
   },
   "homepage": "https://github.com/nfroidure/pgsqwell#readme",
   "devDependencies": {
-    "@babel/cli": "^7.10.5",
-    "@babel/core": "^7.11.1",
-    "@babel/plugin-proposal-class-properties": "^7.10.4",
-    "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
-    "@babel/preset-env": "^7.11.0",
-    "@babel/preset-typescript": "^7.10.4",
-    "@babel/register": "^7.10.5",
-    "@types/jest": "^26.0.10",
-    "@typescript-eslint/eslint-plugin": "^3.9.1",
-    "@typescript-eslint/parser": "^3.9.1",
-    "babel-eslint": "^10.1.0",
-    "babel-plugin-knifecycle": "^2.0.0",
-    "commitizen": "^4.1.2",
-    "conventional-changelog-cli": "^2.1.0",
+    "@babel/cli": "^7.13.14",
+    "@babel/core": "^7.13.15",
+    "@babel/eslint-parser": "^7.13.14",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.13.8",
+    "@babel/preset-env": "^7.13.15",
+    "@babel/preset-typescript": "^7.13.0",
+    "@babel/register": "^7.13.14",
+    "@types/jest": "^26.0.22",
+    "@typescript-eslint/eslint-plugin": "^4.21.0",
+    "@typescript-eslint/parser": "^4.21.0",
+    "babel-plugin-knifecycle": "^5.0.1",
+    "commitizen": "^4.2.3",
+    "conventional-changelog-cli": "^2.1.1",
     "coveralls": "^3.1.0",
-    "cz-conventional-changelog": "^3.2.0",
-    "eslint": "^7.7.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "jest": "^26.4.0",
-    "jsarch": "^3.0.0",
-    "metapak": "^3.1.10",
-    "metapak-nfroidure": "10.2.3",
-    "prettier": "^2.0.5",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^7.23.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "jest": "^26.6.3",
+    "jsarch": "^4.0.1",
+    "metapak": "^4.0.2",
+    "metapak-nfroidure": "11.0.7",
+    "prettier": "^2.2.1",
     "rimraf": "^3.0.2",
-    "typescript": "^3.9.7"
+    "typescript": "^4.2.4"
   },
   "dependencies": {
-    "pg-query-parser": "^0.2.4"
+    "pg-query-parser": "^0.2.5"
   },
   "contributors": [],
   "engines": {
-    "node": ">=10.19.0"
+    "node": ">=12.19.0"
   },
   "config": {
     "commitizen": {
@@ -149,7 +149,11 @@
     }
   },
   "eslintConfig": {
-    "extends": "eslint:recommended",
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended"
+    ],
     "parserOptions": {
       "ecmaVersion": 2018,
       "sourceType": "module",
@@ -170,21 +174,6 @@
     "parser": "@typescript-eslint/parser",
     "ignorePatterns": [
       "*.d.ts"
-    ],
-    "overrides": [
-      {
-        "files": [
-          "*.ts"
-        ],
-        "rules": {
-          "no-unused-vars": [
-            1,
-            {
-              "args": "none"
-            }
-          ]
-        }
-      }
     ]
   },
   "prettier": {
@@ -206,7 +195,7 @@
         "@babel/env",
         {
           "targets": {
-            "node": "10.19.0"
+            "node": "12.19.0"
           }
         }
       ]

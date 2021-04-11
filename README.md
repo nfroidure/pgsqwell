@@ -8,13 +8,13 @@
 > SQL template tag for PostgreSQL done well
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/nfroidure/pgsqwell/blob/master/LICENSE)
-[![Build status](https://secure.travis-ci.org/nfroidure/pgsqwell.svg)](https://travis-ci.org/nfroidure/pgsqwell)
-[![Coverage Status](https://coveralls.io/repos/nfroidure/pgsqwell/badge.svg?branch=master)](https://coveralls.io/r/nfroidure/pgsqwell?branch=master)
+[![Build status](https://travis-ci.com/git+ssh://git@github.com/nfroidure/pgsqwell.git.svg?branch=master)](https://travis-ci.com/github/git+ssh://git@github.com/nfroidure/pgsqwell.git)
+[![Coverage Status](https://coveralls.io/repos/github/git+ssh://git@github.com/nfroidure/pgsqwell.git/badge.svg?branch=master)](https://coveralls.io/github/git+ssh://git@github.com/nfroidure/pgsqwell.git?branch=master)
 [![NPM version](https://badge.fury.io/js/pgsqwell.svg)](https://npmjs.org/package/pgsqwell)
 [![Dependency Status](https://david-dm.org/nfroidure/pgsqwell.svg)](https://david-dm.org/nfroidure/pgsqwell)
 [![devDependency Status](https://david-dm.org/nfroidure/pgsqwell/dev-status.svg)](https://david-dm.org/nfroidure/pgsqwell#info=devDependencies)
-[![Package Quality](http://npm.packagequality.com/shield/pgsqwell.svg)](http://packagequality.com/#?package=pgsqwell)
-[![Code Climate](https://codeclimate.com/github/nfroidure/pgsqwell.svg)](https://codeclimate.com/github/nfroidure/pgsqwell)
+[![Package Quality](https://npm.packagequality.com/shield/pgsqwell.svg)](https://packagequality.com/#?package=pgsqwell)
+[![Code Climate](https://codeclimate.com/github/git+ssh://git@github.com/nfroidure/pgsqwell.git.svg)](https://codeclimate.com/github/git+ssh://git@github.com/nfroidure/pgsqwell.git)
 
 
 [//]: # (::contents:start)
