@@ -58,7 +58,7 @@ function isSQLValues(value: SQLStringLiteralParameter): value is SQLValues {
   return (
     typeof value === 'object' &&
     value !== null &&
-    ((value as unknown) as SQLValues).type == SQLValuesTypeSymbol
+    (value as unknown as SQLValues).type == SQLValuesTypeSymbol
   );
 }
 
@@ -66,7 +66,7 @@ function isSQLPart(value: SQLStringLiteralParameter): value is SQLPart {
   return (
     typeof value === 'object' &&
     value !== null &&
-    ((value as unknown) as SQLPart).type == SQLPartTypeSymbol
+    (value as unknown as SQLPart).type == SQLPartTypeSymbol
   );
 }
 
@@ -76,13 +76,13 @@ function isSQLStatement(
   return (
     typeof value === 'object' &&
     value !== null &&
-    ((value as unknown) as SQLStatement).type == SQLStatementTypeSymbol
+    (value as unknown as SQLStatement).type == SQLStatementTypeSymbol
   );
 }
 
 export function mergeSQLParts(parts: SQLPart[], separator: SQLPart): SQLPart {
   const allParts = separator
-    ? parts.reduce(
+    ? parts.reduce<SQLPart[]>(
         (parts, part) => [...parts, ...(parts.length ? [separator] : []), part],
         [],
       )
@@ -90,7 +90,7 @@ export function mergeSQLParts(parts: SQLPart[], separator: SQLPart): SQLPart {
   return {
     type: SQLPartTypeSymbol,
     ...mergeSQLChunks(
-      (allParts.map(() => '') as unknown) as TemplateStringsArray,
+      allParts.map(() => '') as unknown as TemplateStringsArray,
       allParts,
     ),
   };
@@ -100,7 +100,7 @@ function mergeSQLChunks<T extends SQLStringLiteralParameter[]>(
   chunks: TemplateStringsArray,
   parameters: T,
 ): Omit<SQLPart, 'type'> {
-  const parts = [];
+  const parts: string[] = [];
   const values: SQLValue[] = [];
   const parametersLength = parameters.length;
 
@@ -180,14 +180,17 @@ export function buildQuery(query: SQLStatement): string {
       typeof query.values[index] === 'boolean' ||
       typeof query.values[index] === 'number'
     ) {
-      return query.values[index].toString();
+      return query.values[index]?.toString() || '';
     }
 
     if (null === query.values[index]) {
-      return null;
+      return 'NULL';
     }
 
-    return `'${query.values[index].toString().replace(/'/g, "''")}'`;
+    return `'${(query.values?.[index]?.toString() || 'NULL').replace(
+      /'/g,
+      "''",
+    )}'`;
   });
 }
 

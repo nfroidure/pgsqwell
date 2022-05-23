@@ -5,9 +5,13 @@
 [//]: # ( )
 # Architecture Notes
 
+## Summary
+
+1. [Tagged template queries](#1-tagged-template-queries)
+2. [Checking SQL syntax](#2-checking-sql-syntax)
 
 
-## Tagged template queries
+## 1. Tagged template queries
 
 The `pg` module uses simple `$n` placeholder for queries values
  that are provided in an array.
@@ -18,11 +22,11 @@ This tagged template function adds a level of abstraction
  into `{ text: 'SELECT * FROM users WHERE id=$1', values: [1] }`
  under the hood.
 
-[See in context](./src/lib.ts#L194-L204)
+[See in context](./src/lib.ts#L197-L207)
 
 
 
-## Checking SQL syntax
+## 2. Checking SQL syntax
 
 Its purpose it to ensure queries made with the `sql` tag are well
  formed while running your unit tests.

@@ -108,10 +108,7 @@ describe('SQL statement', () => {
 
   test('should work with list like parameters query', () => {
     const query = sql`SELECT * FROM users WHERE id IN (${joinSQLValues([
-      1,
-      2,
-      3,
-      4,
+      1, 2, 3, 4,
     ])}) AND type=${'admin'}`;
 
     expect({

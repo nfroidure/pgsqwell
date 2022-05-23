@@ -51,14 +51,14 @@ describe('sql', () => {
       throw new YError('E_UNEXPECTED_SUCCESS');
     } catch (err) {
       expect({
-        errorCode: err.code,
-        errorParams: err.params,
+        errorCode: (err as YError).code,
+        errorParams: (err as YError).params,
       }).toMatchInlineSnapshot(`
         Object {
           "errorCode": "E_INVALID_QUERY",
           "errorParams": Array [
-            "SELECT * FROM null",
-            [Error: syntax error at or near "null"],
+            "SELECT * FROM NULL",
+            [Error: syntax error at or near "NULL"],
           ],
         }
       `);
