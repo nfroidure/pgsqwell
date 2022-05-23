@@ -18,7 +18,7 @@ This tagged template function adds a level of abstraction
  into `{ text: 'SELECT * FROM users WHERE id=$1', values: [1] }`
  under the hood.
 
-[See in context](./src/lib.ts#L175-L185)
+[See in context](./src/lib.ts#L194-L204)
 
 
 
@@ -27,5 +27,5 @@ This tagged template function adds a level of abstraction
 Its purpose it to ensure queries made with the `sql` tag are well
  formed while running your unit tests.
 
-[See in context](./src/mock.ts#L14-L18)
+[See in context](./src/mock.ts#L21-L25)
 

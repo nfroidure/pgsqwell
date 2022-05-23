@@ -3,6 +3,7 @@ import sql, {
   joinSQLValues,
   emptySQLPart,
   sqlPart,
+  mergeSQLParts,
 } from '.';
 
 jest.mock('.', () => require('./mock'));
@@ -23,14 +24,14 @@ describe('SQL statement', () => {
   });
 
   test('should work with a one parameter query', () => {
-    const query = sql`SELECT * FROM users where id=${1}`;
+    const query = sql`SELECT * FROM users WHERE id=${1}`;
 
     expect({
       text: query.text,
       values: query.values,
     }).toMatchInlineSnapshot(`
       Object {
-        "text": "SELECT * FROM users where id=$1",
+        "text": "SELECT * FROM users WHERE id=$1",
         "values": Array [
           1,
         ],
@@ -39,14 +40,14 @@ describe('SQL statement', () => {
   });
 
   test('should work with SQL parts', () => {
-    const query = sql`SELECT * FROM users where id=${1} ${sqlPart`LIMIT 1`}`;
+    const query = sql`SELECT * FROM users WHERE id=${1} ${sqlPart`LIMIT 1`}`;
 
     expect({
       text: query.text,
       values: query.values,
     }).toMatchInlineSnapshot(`
       Object {
-        "text": "SELECT * FROM users where id=$1 LIMIT 1",
+        "text": "SELECT * FROM users WHERE id=$1 LIMIT 1",
         "values": Array [
           1,
         ],
@@ -55,14 +56,14 @@ describe('SQL statement', () => {
   });
 
   test('should work with empty SQL part', () => {
-    const query = sql`SELECT * FROM users where id=${1}${emptySQLPart}`;
+    const query = sql`SELECT * FROM users WHERE id=${1}${emptySQLPart}`;
 
     expect({
       text: query.text,
       values: query.values,
     }).toMatchInlineSnapshot(`
       Object {
-        "text": "SELECT * FROM users where id=$1",
+        "text": "SELECT * FROM users WHERE id=$1",
         "values": Array [
           1,
         ],
@@ -71,14 +72,14 @@ describe('SQL statement', () => {
   });
 
   test('should work with parametrized SQL part', () => {
-    const query = sql`SELECT * FROM users where id=${1} ${sqlPart`LIMIT ${0} OFFSET ${10}`}`;
+    const query = sql`SELECT * FROM users WHERE id=${1} ${sqlPart`LIMIT ${0} OFFSET ${10}`}`;
 
     expect({
       text: query.text,
       values: query.values,
     }).toMatchInlineSnapshot(`
       Object {
-        "text": "SELECT * FROM users where id=$1 LIMIT $2 OFFSET $3",
+        "text": "SELECT * FROM users WHERE id=$1 LIMIT $2 OFFSET $3",
         "values": Array [
           1,
           0,
@@ -89,14 +90,14 @@ describe('SQL statement', () => {
   });
 
   test('should work with several parameters query', () => {
-    const query = sql`SELECT * FROM users where id=${1} and type=${'admin'}`;
+    const query = sql`SELECT * FROM users WHERE id=${1} AND type=${'admin'}`;
 
     expect({
       text: query.text,
       values: query.values,
     }).toMatchInlineSnapshot(`
       Object {
-        "text": "SELECT * FROM users where id=$1 and type=$2",
+        "text": "SELECT * FROM users WHERE id=$1 AND type=$2",
         "values": Array [
           1,
           "admin",
@@ -106,19 +107,19 @@ describe('SQL statement', () => {
   });
 
   test('should work with list like parameters query', () => {
-    const query = sql`SELECT * FROM users where id IN (${joinSQLValues([
+    const query = sql`SELECT * FROM users WHERE id IN (${joinSQLValues([
       1,
       2,
       3,
       4,
-    ])}) and type=${'admin'}`;
+    ])}) AND type=${'admin'}`;
 
     expect({
       text: query.text,
       values: query.values,
     }).toMatchInlineSnapshot(`
       Object {
-        "text": "SELECT * FROM users where id IN ($1, $2, $3, $4) and type=$5",
+        "text": "SELECT * FROM users WHERE id IN ($1, $2, $3, $4) AND type=$5",
         "values": Array [
           1,
           2,
@@ -231,7 +232,7 @@ VALUES (
   });
 
   test('should work with query composition', () => {
-    const query1 = sql`SELECT * FROM users where id=${1} and type=${'admin'}`;
+    const query1 = sql`SELECT * FROM users WHERE id=${1} AND type=${'admin'}`;
     const query2 = sql`SELECT x.id, x.name FROM (
       ${query1}
     ) AS x WHERE name LIKE ${'test'}`;
@@ -242,7 +243,7 @@ VALUES (
     }).toMatchInlineSnapshot(`
       Object {
         "text": "SELECT x.id, x.name FROM (
-            SELECT * FROM users where id=$1 and type=$2
+            SELECT * FROM users WHERE id=$1 AND type=$2
           ) AS x WHERE name LIKE $3",
         "values": Array [
           1,
@@ -266,11 +267,11 @@ VALUES (
       Object {
         "text": "
           SELECT x.id, x.name FROM (
-            SELECT * FROM users where id=$1 and type=$2
+            SELECT * FROM users WHERE id=$1 AND type=$2
           ) AS x WHERE name LIKE $3
           UNION
           SELECT id, name FROM (
-            SELECT * FROM users where id=$4 and type=$5
+            SELECT * FROM users WHERE id=$4 AND type=$5
           ) AS x WHERE name LIKE $6
           ",
         "values": Array [
@@ -280,6 +281,37 @@ VALUES (
           1,
           "admin",
           "test2",
+        ],
+      }
+    `);
+  });
+
+  test('should work with merged SQL parts', () => {
+    const query = sql`SELECT *
+FROM users
+WHERE id=${1}
+  AND type=${'admin'}
+ORDER BY${mergeSQLParts(
+      [
+        sqlPart` ${escapeSQLIdentifier('id')} ASC`,
+        sqlPart` ${escapeSQLIdentifier('type')} DESC`,
+      ],
+      sqlPart`,`,
+    )}`;
+
+    expect({
+      text: query.text,
+      values: query.values,
+    }).toMatchInlineSnapshot(`
+      Object {
+        "text": "SELECT *
+      FROM users
+      WHERE id=$1
+        AND type=$2
+      ORDER BY \\"id\\" ASC, \\"type\\" DESC",
+        "values": Array [
+          1,
+          "admin",
         ],
       }
     `);

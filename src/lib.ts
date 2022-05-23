@@ -80,7 +80,26 @@ function isSQLStatement(
   );
 }
 
-function mergeSQLChunks(chunks, parameters) {
+export function mergeSQLParts(parts: SQLPart[], separator: SQLPart): SQLPart {
+  const allParts = separator
+    ? parts.reduce(
+        (parts, part) => [...parts, ...(parts.length ? [separator] : []), part],
+        [],
+      )
+    : parts;
+  return {
+    type: SQLPartTypeSymbol,
+    ...mergeSQLChunks(
+      (allParts.map(() => '') as unknown) as TemplateStringsArray,
+      allParts,
+    ),
+  };
+}
+
+function mergeSQLChunks<T extends SQLStringLiteralParameter[]>(
+  chunks: TemplateStringsArray,
+  parameters: T,
+): Omit<SQLPart, 'type'> {
   const parts = [];
   const values: SQLValue[] = [];
   const parametersLength = parameters.length;
@@ -145,7 +164,7 @@ export function sqlPart<T extends SQLStringLiteralParameter[]>(
   chunks: TemplateStringsArray,
   ...parameters: T
 ): SQLPart {
-  const { parts, values } = mergeSQLChunks(chunks, parameters);
+  const { parts, values } = mergeSQLChunks<T>(chunks, parameters);
   return {
     type: SQLPartTypeSymbol,
     parts,
@@ -187,7 +206,7 @@ export default function sql<T extends SQLStringLiteralParameter[]>(
   chunks: TemplateStringsArray,
   ...parameters: T
 ): SQLStatement {
-  const { parts, values } = mergeSQLChunks(chunks, parameters);
+  const { parts, values } = mergeSQLChunks<T>(chunks, parameters);
   return {
     type: SQLStatementTypeSymbol,
     parts,
