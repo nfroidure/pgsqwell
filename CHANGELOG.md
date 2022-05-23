@@ -1,3 +1,13 @@
+# [1.1.0](https://github.com/nfroidure/pgsqwell/compare/v1.0.1...v1.1.0) (2022-05-23)
+
+
+### Features
+
+* **lib:** export the buildQuery for debugging purposes ([8689b96](https://github.com/nfroidure/pgsqwell/commit/8689b9655d446cef5ff22dedc81c7694a5b55364))
+* **sql:** allow to merge SQL parts ([094f255](https://github.com/nfroidure/pgsqwell/commit/094f255dbd7527b7ea3d476e9afb4c2a0c7e6604))
+
+
+
 ## [1.0.1](https://github.com/nfroidure/pgsqwell/compare/v1.0.0...v1.0.1) (2021-04-11)
 
 
