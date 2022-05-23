@@ -7,6 +7,7 @@ import sql, {
   escapeSQLIdentifier,
   emptySQLPart,
   mergeSQLParts,
+  buildQuery,
 } from './lib';
 
 export {
@@ -15,6 +16,7 @@ export {
   escapeSQLIdentifier,
   emptySQLPart,
   mergeSQLParts,
+  buildQuery,
 };
 
 export default sql;
