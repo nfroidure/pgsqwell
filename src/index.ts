@@ -8,7 +8,7 @@ import sql, {
   emptySQLPart,
   mergeSQLParts,
   buildQuery,
-} from './lib';
+} from './lib.js';
 
 export {
   sqlPart,

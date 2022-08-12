@@ -8,8 +8,7 @@
 > SQL template tag for PostgreSQL done well
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/nfroidure/pgsqwell/blob/master/LICENSE)
-[![Build status](https://travis-ci.com/git+ssh://git@github.com/nfroidure/pgsqwell.git.svg?branch=master)](https://travis-ci.com/github/git+ssh://git@github.com/nfroidure/pgsqwell.git)
-[![Coverage Status](https://coveralls.io/repos/github/git+ssh://git@github.com/nfroidure/pgsqwell.git/badge.svg?branch=master)](https://coveralls.io/github/git+ssh://git@github.com/nfroidure/pgsqwell.git?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/nfroidure/pgsqwell/badge.svg?branch=master)](https://coveralls.io/github/nfroidure/pgsqwell?branch=master)
 
 
 [//]: # (::contents:start)

@@ -4,9 +4,10 @@ import sql, {
   emptySQLPart,
   sqlPart,
   mergeSQLParts,
-} from '.';
+} from './index.js';
 
-jest.mock('.', () => require('./mock'));
+// Unfortunately, we cannot validate queries here,
+// this don't work ATM with esbuild and jest
 
 describe('SQL statement', () => {
   test('should work with a raw query', () => {

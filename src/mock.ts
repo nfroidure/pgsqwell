@@ -5,10 +5,10 @@ import sql, {
   emptySQLPart,
   buildQuery,
   mergeSQLParts,
-} from './lib';
-import YError from 'yerror';
+} from './lib.js';
+import { YError } from 'yerror';
 import { parse } from 'pg-query-parser';
-import type { SQLStringLiteralParameter, SQLStatement } from './lib';
+import type { SQLStringLiteralParameter, SQLStatement } from './lib.js';
 
 export {
   sqlPart,

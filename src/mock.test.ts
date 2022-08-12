@@ -1,5 +1,5 @@
-import sql, { joinSQLValues } from './mock';
-import YError from 'yerror';
+import sql, { joinSQLValues } from './mock.js';
+import { YError } from 'yerror';
 
 describe('sql', () => {
   test('should work with a valid simple query', () => {
