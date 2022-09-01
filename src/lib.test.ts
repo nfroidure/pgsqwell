@@ -1,3 +1,4 @@
+import { describe, test, expect } from '@jest/globals';
 import sql, {
   escapeSQLIdentifier,
   joinSQLValues,
@@ -17,9 +18,9 @@ describe('SQL statement', () => {
       text: query.text,
       values: query.values,
     }).toMatchInlineSnapshot(`
-      Object {
+      {
         "text": "SELECT * FROM users",
-        "values": Array [],
+        "values": [],
       }
     `);
   });
@@ -31,9 +32,9 @@ describe('SQL statement', () => {
       text: query.text,
       values: query.values,
     }).toMatchInlineSnapshot(`
-      Object {
+      {
         "text": "SELECT * FROM users WHERE id=$1",
-        "values": Array [
+        "values": [
           1,
         ],
       }
@@ -47,9 +48,9 @@ describe('SQL statement', () => {
       text: query.text,
       values: query.values,
     }).toMatchInlineSnapshot(`
-      Object {
+      {
         "text": "SELECT * FROM users WHERE id=$1 LIMIT 1",
-        "values": Array [
+        "values": [
           1,
         ],
       }
@@ -63,9 +64,9 @@ describe('SQL statement', () => {
       text: query.text,
       values: query.values,
     }).toMatchInlineSnapshot(`
-      Object {
+      {
         "text": "SELECT * FROM users WHERE id=$1",
-        "values": Array [
+        "values": [
           1,
         ],
       }
@@ -79,9 +80,9 @@ describe('SQL statement', () => {
       text: query.text,
       values: query.values,
     }).toMatchInlineSnapshot(`
-      Object {
+      {
         "text": "SELECT * FROM users WHERE id=$1 LIMIT $2 OFFSET $3",
-        "values": Array [
+        "values": [
           1,
           0,
           10,
@@ -97,9 +98,9 @@ describe('SQL statement', () => {
       text: query.text,
       values: query.values,
     }).toMatchInlineSnapshot(`
-      Object {
+      {
         "text": "SELECT * FROM users WHERE id=$1 AND type=$2",
-        "values": Array [
+        "values": [
           1,
           "admin",
         ],
@@ -116,9 +117,9 @@ describe('SQL statement', () => {
       text: query.text,
       values: query.values,
     }).toMatchInlineSnapshot(`
-      Object {
+      {
         "text": "SELECT * FROM users WHERE id IN ($1, $2, $3, $4) AND type=$5",
-        "values": Array [
+        "values": [
           1,
           2,
           3,
@@ -138,12 +139,12 @@ describe('SQL statement', () => {
       text: query.text,
       values: query.values,
     }).toMatchInlineSnapshot(`
-      Object {
+      {
         "text": "INSERT INTO users (id, name, preferences, creation) VALUES ($1, $2, $3, $4)",
-        "values": Array [
+        "values": [
           1,
           "paul",
-          Object {
+          {
             "silent": true,
           },
           1970-01-01T00:00:00.000Z,
@@ -163,12 +164,12 @@ describe('SQL statement', () => {
       text: query.text,
       values: query.values,
     }).toMatchInlineSnapshot(`
-      Object {
-        "text": "INSERT INTO \\"users\\" (id, name, preferences, creation) VALUES ($1, $2, $3, $4)",
-        "values": Array [
+      {
+        "text": "INSERT INTO "users" (id, name, preferences, creation) VALUES ($1, $2, $3, $4)",
+        "values": [
           1,
           "paul",
-          Object {
+          {
             "silent": true,
           },
           1970-01-01T00:00:00.000Z,
@@ -199,9 +200,9 @@ VALUES (
       text: query.text,
       values: query.values,
     }).toMatchInlineSnapshot(`
-      Object {
+      {
         "text": "
-      INSERT INTO \\"users\\" (
+      INSERT INTO "users" (
         id,
         name,
         preferences,
@@ -213,13 +214,13 @@ VALUES (
         $2,
         $3,
         $4,
-        (SELECT COUNT(*) FROM  \\"users\\" WHERE id > $5)
+        (SELECT COUNT(*) FROM  "users" WHERE id > $5)
       )
           ",
-        "values": Array [
+        "values": [
           1,
           "paul",
-          Object {
+          {
             "silent": true,
           },
           1970-01-01T00:00:00.000Z,
@@ -239,11 +240,11 @@ VALUES (
       text: query2.text,
       values: query2.values,
     }).toMatchInlineSnapshot(`
-      Object {
+      {
         "text": "SELECT x.id, x.name FROM (
             SELECT * FROM users WHERE id=$1 AND type=$2
           ) AS x WHERE name LIKE $3",
-        "values": Array [
+        "values": [
           1,
           "admin",
           "test",
@@ -262,7 +263,7 @@ VALUES (
       text: query4.text,
       values: query4.values,
     }).toMatchInlineSnapshot(`
-      Object {
+      {
         "text": "
           SELECT x.id, x.name FROM (
             SELECT * FROM users WHERE id=$1 AND type=$2
@@ -272,7 +273,7 @@ VALUES (
             SELECT * FROM users WHERE id=$4 AND type=$5
           ) AS x WHERE name LIKE $6
           ",
-        "values": Array [
+        "values": [
           1,
           "admin",
           "test",
@@ -301,13 +302,13 @@ ORDER BY${mergeSQLParts(
       text: query.text,
       values: query.values,
     }).toMatchInlineSnapshot(`
-      Object {
+      {
         "text": "SELECT *
       FROM users
       WHERE id=$1
         AND type=$2
-      ORDER BY \\"id\\" ASC, \\"type\\" DESC",
-        "values": Array [
+      ORDER BY "id" ASC, "type" DESC",
+        "values": [
           1,
           "admin",
         ],
