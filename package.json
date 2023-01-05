@@ -1,6 +1,6 @@
 {
   "name": "pgsqwell",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "SQL template tag for PostgreSQL done well",
   "type": "module",
   "main": "dist/index.js",
