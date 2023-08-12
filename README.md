@@ -7,8 +7,8 @@
 # pgsqwell
 > SQL template tag for PostgreSQL done well
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/nfroidure/pgsqwell/blob/master/LICENSE)
-[![Coverage Status](https://coveralls.io/repos/github/nfroidure/pgsqwell/badge.svg?branch=master)](https://coveralls.io/github/nfroidure/pgsqwell?branch=master)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/nfroidure/pgsqwell/blob/main/LICENSE)
+[![Coverage Status](https://coveralls.io/repos/github/nfroidure/pgsqwell/badge.svg?branch=main)](https://coveralls.io/github/nfroidure/pgsqwell?branch=main)
 
 
 [//]: # (::contents:start)
@@ -63,4 +63,4 @@ Known downsides:
 - [Nicolas Froidure](http://insertafter.com/en/index.html)
 
 # License
-[MIT](https://github.com/nfroidure/pgsqwell/blob/master/LICENSE)
+[MIT](https://github.com/nfroidure/pgsqwell/blob/main/LICENSE)
