@@ -1,3 +1,7 @@
+# [4.0.0](https://github.com/nfroidure/pgsqwell/compare/v3.0.0...v4.0.0) (2023-08-16)
+
+
+
 # [3.0.0](https://github.com/nfroidure/pgsqwell/compare/v2.0.2...v3.0.0) (2023-08-12)
 
 
