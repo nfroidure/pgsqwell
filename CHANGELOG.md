@@ -1,3 +1,12 @@
+# [4.1.0](https://github.com/nfroidure/pgsqwell/compare/v4.0.0...v4.1.0) (2023-08-20)
+
+
+### Features
+
+* **debug:** add debug tooling ([d996422](https://github.com/nfroidure/pgsqwell/commit/d996422a2b8c7c0b6a0357a41131c32d9150f28c))
+
+
+
 # [4.0.0](https://github.com/nfroidure/pgsqwell/compare/v3.0.0...v4.0.0) (2023-08-16)
 
 
