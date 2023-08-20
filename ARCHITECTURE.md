@@ -8,6 +8,13 @@
 ## Summary
 
 1. [Tagged template queries](#1-tagged-template-queries)
+   1. [Debug](#11-debug)
+   1. [Utils](#11-utils)
+      1. [joinSQLValues](#111-joinsqlvalues)
+      2. [emptySQLPart](#112-emptysqlpart)
+      2. [escapeSQLIdentifier](#112-escapesqlidentifier)
+      2. [sqlPart](#112-sqlpart)
+      3. [buildQuery](#113-buildquery)
 2. [Checking SQL syntax](#2-checking-sql-syntax)
 
 
@@ -22,7 +29,100 @@ This tagged template function adds a level of abstraction
  into `{ text: 'SELECT * FROM users WHERE id=$1', values: [1] }`
  under the hood.
 
-[See in context](./src/lib.ts#L197-L207)
+Note that you can put queries in your queries 😙.
+
+[See in context](./src/lib.ts#L279-L291)
+
+
+
+### 1.1. Debug
+
+Run your process with the `DEBUG='pgsqwell'` env var
+ to log every built queries during its execution.
+
+[See in context](./src/lib.ts#L5-L9)
+
+
+
+### 1.1. Utils
+
+To avoid dependencies injections, this module provides
+ a few useful utils.
+
+[See in context](./src/lib.ts#L53-L57)
+
+
+
+#### 1.1.1. joinSQLValues
+
+Allow to create that kind of requests easily:
+```ts
+sql`SELECT * FROM users WHERE id IN (${joinSQLValues([1, 2])})`
+```
+
+[See in context](./src/lib.ts#L59-L65)
+
+
+
+#### 1.1.2. emptySQLPart
+
+Allow to create queries with empty condition branches:
+```ts
+sql`
+SELECT * FROM users${
+  env.BY_PASS_CHECKS ?
+  sqlPart` WHERE role = 'admin'` :
+  emptySQLPart
+}`
+```
+
+[See in context](./src/lib.ts#L181-L192)
+
+
+
+#### 1.1.2. escapeSQLIdentifier
+
+Sometime, you need to  set a SQL identifier dynamically.
+That function allow you to ensure you won't create a
+ SQL injection issue:
+```ts
+sql`
+SELECT * FROM users ${escapeSQLIdentifier(
+  env.ROLE_FIELD
+)} = 'admin'`
+
+⚠️ You should NOT use it until you are forced to by
+ some kind of black magics.
+```
+
+[See in context](./src/lib.ts#L195-L209)
+
+
+
+#### 1.1.2. sqlPart
+
+Allow to create queries sub parts conditionally:
+```ts
+sql`SELECT * FROM users WHERE id IN (${
+  env.BY_PASS_CHECKS ?
+    sqlPart`SELECT id FROM users` :
+    sqlPart`SELECT id FROM users WHERE role = ${'admin`}
+)})`
+```
+
+[See in context](./src/lib.ts#L214-L224)
+
+
+
+#### 1.1.3. buildQuery
+
+Allow to build a query from its parts and values. More
+ usefull for debug since query object can be put in your
+ favorite SQL client as is. See `postgresql-service` for
+ an example of its support.
+```
+
+[See in context](./src/lib.ts#L237-L244)
 
 
 

@@ -233,56 +233,54 @@ VALUES (
   test('should work with query composition', () => {
     const query1 = sql`SELECT * FROM users WHERE id=${1} AND type=${'admin'}`;
     const query2 = sql`SELECT x.id, x.name FROM (
-      ${query1}
-    ) AS x WHERE name LIKE ${'test'}`;
+  ${query1}
+) AS x WHERE name LIKE ${'test'}`;
 
     expect({
       text: query2.text,
       values: query2.values,
     }).toMatchInlineSnapshot(`
-      {
-        "text": "SELECT x.id, x.name FROM (
-            SELECT * FROM users WHERE id=$1 AND type=$2
-          ) AS x WHERE name LIKE $3",
-        "values": [
-          1,
-          "admin",
-          "test",
-        ],
-      }
-    `);
+{
+  "text": "SELECT x.id, x.name FROM (
+  SELECT * FROM users WHERE id=$1 AND type=$2
+) AS x WHERE name LIKE $3",
+  "values": [
+    1,
+    "admin",
+    "test",
+  ],
+}
+`);
     const query3 = sql`SELECT id, name FROM (
-      ${query1}
-    ) AS x WHERE name LIKE ${'test2'}`;
+  ${query1}
+) AS x WHERE name LIKE ${'test2'}`;
     const query4 = sql`
-    ${query2}
-    UNION
-    ${query3}
-    `;
+${query2}
+UNION ${query3}
+`;
     expect({
       text: query4.text,
       values: query4.values,
     }).toMatchInlineSnapshot(`
-      {
-        "text": "
-          SELECT x.id, x.name FROM (
-            SELECT * FROM users WHERE id=$1 AND type=$2
-          ) AS x WHERE name LIKE $3
-          UNION
-          SELECT id, name FROM (
-            SELECT * FROM users WHERE id=$4 AND type=$5
-          ) AS x WHERE name LIKE $6
-          ",
-        "values": [
-          1,
-          "admin",
-          "test",
-          1,
-          "admin",
-          "test2",
-        ],
-      }
-    `);
+{
+  "text": "
+SELECT x.id, x.name FROM (
+  SELECT * FROM users WHERE id=$1 AND type=$2
+) AS x WHERE name LIKE $3
+UNION SELECT id, name FROM (
+  SELECT * FROM users WHERE id=$4 AND type=$5
+) AS x WHERE name LIKE $6
+",
+  "values": [
+    1,
+    "admin",
+    "test",
+    1,
+    "admin",
+    "test2",
+  ],
+}
+`);
   });
 
   test('should work with merged SQL parts', () => {
