@@ -1,3 +1,12 @@
+# [4.2.0](https://github.com/nfroidure/pgsqwell/compare/v4.1.0...v4.2.0) (2024-05-29)
+
+
+### Bug Fixes
+
+* **dependencies:** change dependencies for forks ([bf60572](https://github.com/nfroidure/pgsqwell/commit/bf605728c5398e19523c8b15bb4983d753ef6949))
+
+
+
 # [4.1.0](https://github.com/nfroidure/pgsqwell/compare/v4.0.0...v4.1.0) (2023-08-20)
 
 
