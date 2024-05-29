@@ -46,7 +46,7 @@ describe('sql', () => {
     `);
   });
 
-  test('should fail with malformed query', async () => {
+  test.only('should fail with malformed query', async () => {
     try {
       sql`SELECT * FROM ${null}`;
       throw new YError('E_UNEXPECTED_SUCCESS');

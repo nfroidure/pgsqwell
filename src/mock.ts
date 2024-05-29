@@ -7,7 +7,7 @@ import sql, {
   mergeSQLParts,
 } from './lib.js';
 import { YError } from 'yerror';
-import { parse } from 'pg-query-parser';
+import { parse } from 'pgsql-parser';
 import type { SQLStringLiteralParameter, SQLStatement } from './lib.js';
 
 export {
@@ -29,9 +29,10 @@ export default function sqlMock<T extends SQLStringLiteralParameter[]>(
 ): SQLStatement {
   const query = sql<T>(chunks, ...parameters);
   const builtQuery = buildQuery(query);
-  const result = parse(builtQuery);
-  if (result.error) {
-    throw new YError('E_INVALID_QUERY', builtQuery, result.error);
+  try {
+    parse(builtQuery);
+  } catch (err) {
+    throw new YError('E_INVALID_QUERY', builtQuery, err);
   }
 
   return query;
