@@ -1,3 +1,12 @@
+# [5.1.0](https://github.com/nfroidure/pgsqwell/compare/v5.0.0...v5.1.0) (2024-05-30)
+
+
+### Features
+
+* **types:** export types too ([a831c2a](https://github.com/nfroidure/pgsqwell/commit/a831c2ad59bccacf5de09ac62eb222ebb8a03d13))
+
+
+
 # [5.0.0](https://github.com/nfroidure/pgsqwell/compare/v4.2.0...v5.0.0) (2024-05-30)
 
 
