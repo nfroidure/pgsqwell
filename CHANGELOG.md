@@ -1,3 +1,18 @@
+# [5.0.0](https://github.com/nfroidure/pgsqwell/compare/v4.2.0...v5.0.0) (2024-05-30)
+
+
+### Code Refactoring
+
+* **mock:** remove mock from the base module ([5fc4fa7](https://github.com/nfroidure/pgsqwell/commit/5fc4fa72a43efba8c2b899c7c1a30d108cc3e3ad))
+
+
+### BREAKING CHANGES
+
+* **mock:** You will need to use the `pgsqwell-mock` module if you used the mock of this
+module.
+
+
+
 # [4.2.0](https://github.com/nfroidure/pgsqwell/compare/v4.1.0...v4.2.0) (2024-05-29)
 
 
