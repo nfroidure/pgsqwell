@@ -5,6 +5,11 @@ import sql, {
   emptySQLPart,
   mergeSQLParts,
   buildQuery,
+  type SQLStatement,
+  type SQLPart,
+  type SQLValues,
+  type SQLValue,
+  type SQLStringLiteralParameter,
 } from './lib.js';
 
 export {
@@ -14,6 +19,14 @@ export {
   emptySQLPart,
   mergeSQLParts,
   buildQuery,
+};
+
+export type {
+  SQLStatement,
+  SQLPart,
+  SQLValues,
+  SQLValue,
+  SQLStringLiteralParameter,
 };
 
 export default sql;
