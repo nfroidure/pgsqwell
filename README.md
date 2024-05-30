@@ -15,10 +15,9 @@
 Done well because:
 
 - immutable
-- the `sql` tag for valid SQL statements `sqlPart` for subparts
-- allows syntax checking in your tests
+- separation of concerns / specialization: use the `sql` tag for valid SQL statements, `sqlPart` for subparts that ain't necessarily valid
 
-Sample usage:
+## Sample usage
 
 ```ts
 import sql, {
@@ -43,13 +42,19 @@ ${query3}
 `;
 ```
 
-To check queries in your Jest tests, simply add this to your tests files:
+## Debug
 
-```js
-jest.mock('pgsqwell', () => require('pgsqwell/dist/mock'));
+To print any query built with `pgsqwell` use the `DEBUG=pgsqwell` environment variable:
+
+```ts
+DEBUG=pgsqwell npm t
 ```
 
-Known downsides:
+## Testing
+
+Use [`pgsqwell-mock`](https://github.com/nfroidure/pgsqwell-mock) to check you queries in your tests.
+
+## Known downsides
 
 - if you use the
   [vscode-sql-tagged-template-literal](https://marketplace.visualstudio.com/items?itemName=frigus02.vscode-sql-tagged-template-literals)

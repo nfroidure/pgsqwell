@@ -92,7 +92,6 @@
   },
   "dependencies": {
     "debug": "4.3.4",
-    "pgsql-parser": "^13.16.0",
     "yerror": "^8.0.0"
   },
   "contributors": [],

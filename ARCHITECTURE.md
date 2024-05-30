@@ -15,7 +15,6 @@
       2. [escapeSQLIdentifier](#112-escapesqlidentifier)
       2. [sqlPart](#112-sqlpart)
       3. [buildQuery](#113-buildquery)
-2. [Checking SQL syntax](#2-checking-sql-syntax)
 
 
 ## 1. Tagged template queries
@@ -123,13 +122,4 @@ Allow to build a query from its parts and values. More
 ```
 
 [See in context](./src/lib.ts#L237-L244)
-
-
-
-## 2. Checking SQL syntax
-
-Its purpose it to ensure queries made with the `sql` tag are well
- formed while running your unit tests.
-
-[See in context](./src/mock.ts#L21-L25)
 
