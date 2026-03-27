@@ -17,23 +17,23 @@ export const SQLTypesSymbols = [
   SQLStatementTypeSymbol,
 ] as const;
 
-export type SQLStatement = {
+export interface SQLStatement {
   type: typeof SQLStatementTypeSymbol;
   parts: string[];
   values: SQLValue[];
   text: string;
-};
+}
 
-export type SQLPart = {
+export interface SQLPart {
   type: typeof SQLPartTypeSymbol;
   parts: string[];
   values: SQLValue[];
-};
+}
 
-export type SQLValues = {
+export interface SQLValues {
   type: typeof SQLValuesTypeSymbol;
   values: SQLValue[];
-};
+}
 
 export type SQLValue =
   | string
@@ -168,7 +168,7 @@ function mergeSQLChunks<T extends SQLStringLiteralParameter[]>(
       } else {
         parts.push(chunks[i]);
       }
-      values.push(parameters[i]);
+      values.push(parameters[i] as SQLValue);
     }
   }
 
