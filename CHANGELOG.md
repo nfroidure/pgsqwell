@@ -1,3 +1,5 @@
+# [6.0.0](github.com/nfroidure/pgsqwell/compare/v5.1.1...v6.0.0) (2026-03-27)
+
 ## [5.1.1](https://github.com/nfroidure/pgsqwell/compare/v5.1.0...v5.1.1) (2024-07-16)
 
 
